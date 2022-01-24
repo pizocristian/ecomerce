@@ -1,0 +1,121 @@
+<div class="todo">
+    <button routerLink="/home/pedidos" pButton pRipple type="button" label="Volver" class="p-button-outlined p-button-rounded" icon="pi pi-angle-left"></button>
+<div class="cards">
+
+<div class="card">
+    <div class="container">
+      <h4><b>Estado del pedido</b></h4>
+      <p>{{pedido.estado}}</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="container">
+      <h4><b> Datos del pedido</b></h4>
+      <p>Dirección: {{pedido.direccion}}</p>
+    <p>Barrio: {{pedido.barrio}}</p>
+    <p>Ciudad: {{pedido.ciudad}}</p>  
+    <p>Telefono: {{pedido.telefono}}</p> 
+    </div>
+  </div>
+  <div class="card">
+    <div class="container">
+      <h4><b>Total del pedido</b></h4>
+      <p>COP {{pedido.precioTotal| currency}}</p>
+    </div>
+  </div>
+
+</div>
+
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+    <!-- Item Column -->
+    <ng-container matColumnDef="foto">
+      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <td mat-cell *matCellDef="let transaction"> <img [src]="transaction.foto"  style="width: 100px;" alt=""></td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+    
+    <!-- Item Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Producto </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.nombre}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    
+  
+    <!-- Talla Column -->
+    <ng-container matColumnDef="talla">
+      <th mat-header-cell *matHeaderCellDef> Talla </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.talla}} </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef> Color </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.color}} </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
+    </ng-container>
+
+    <!-- Cost Column -->
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let transaction">COP {{transaction.precio | currency}} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Foto Description Column -->
+    <ng-container matColumnDef="foto-description">
+      <th mat-header-cell *matHeaderCellDef> Imagen del producto </th>
+    </ng-container>
+
+  
+    <!-- Item Description Column -->
+    <ng-container matColumnDef="item-description">
+      <th mat-header-cell *matHeaderCellDef> Nombre del producto </th>
+    </ng-container>
+    
+    <!-- Cost Description Column -->
+    <ng-container matColumnDef="talla-description">
+      <th mat-header-cell *matHeaderCellDef>Talla del producto </th>
+    </ng-container>
+
+    <!-- Cost Description Column -->
+    <ng-container matColumnDef="color-description">
+      <th mat-header-cell *matHeaderCellDef>Color del producto </th>
+    </ng-container>
+  
+    <!-- Cost Description Column -->
+    <ng-container matColumnDef="precio-description">
+      <th mat-header-cell *matHeaderCellDef> Precio del producto </th>
+    </ng-container>
+
+    <!-- Cost Description Column -->
+    <ng-container matColumnDef="accion-description">
+      <th mat-header-cell *matHeaderCellDef> Eliminar producto </th>
+    </ng-container>
+  
+    <!-- Disclaimer column -->
+    <ng-container matColumnDef="disclaimer">
+      <td mat-footer-cell *matFooterCellDef colspan="4">
+        Gracias por tu compra, todas nuestros productos tienen garantia de 6 meses, esperamos que vuelvas a Shop Store
+      </td>      
+      <td mat-footer-cell *matFooterCellDef>
+        
+      </td>
+    </ng-container>
+    
+  
+    <!-- The table will render two header rows, one data row per data object, and two footer rows. -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"
+        class="example-first-header-row">
+    </tr>
+    <tr mat-header-row *matHeaderRowDef="['foto-description','item-description', 'talla-description', 'color-description','precio-description']"
+        class="example-second-header-row">
+    </tr>
+  
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns" class="example-first-footer-row"></tr> -->
+    <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+  </table>
+</div>

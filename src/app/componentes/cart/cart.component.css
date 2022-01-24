@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .example-first-header-row th {
+    text-align: center;
+    border-bottom: none;
+  }
+  
+  .example-second-header-row th {
+    text-align: center;
+    border-bottom: none;
+  }
+  .example-second-header-row {
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .example-first-footer-row {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .example-second-footer-row td {
+    text-align: center;
+    font-style: italic;
+  }

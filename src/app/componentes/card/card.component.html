@@ -1,0 +1,15 @@
+<div class="card-deck-container">
+<div *ngFor="let i of items" class="card card-item">
+    <img [src]="i.foto" alt="Avatar">
+    <div class="container">
+      <h4><b>{{i.nombre}}</b></h4>
+      <div>
+      <p styl>COP {{i.precio | currency}}</p>
+      <button mat-raised-button color="primary" [routerLink]="['/home/detalle', categoria,i.id]">Ver mas</button>
+      </div>
+    </div>
+  </div>
+  <p-paginator [rows]="10" [totalRecords]="10" ></p-paginator>
+</div>
+
+

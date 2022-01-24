@@ -1,0 +1,20 @@
+<div class="hola">
+<p-orderList [value]="products" [listStyle]="{'max-height':'30rem'}" header="Lista de Pedidos" >
+    <ng-template let-product pTemplate="item">
+        <div class="product-item" routerLink="/home/pedido">
+            <div class="image-container">
+                    <img [src]="product.foto" [alt]="product.name" class="product-image" />
+            </div>
+            <div class="product-list-detail">
+                <h5 class="p-mb-2">Pedido {{product.id_pedido}}</h5>
+               
+                <span class="product-category">COP {{product.precioTotal| currency}}</span>
+            </div>
+            <div class="product-list-action">
+                <h6 class="p-mb-2">Estado</h6>
+                <span>{{product.estado}}</span>
+            </div>
+        </div>
+    </ng-template>
+</p-orderList>
+</div>

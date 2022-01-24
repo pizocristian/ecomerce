@@ -1,0 +1,27 @@
+<p-card  class="p-shadow-24">
+    <ng-template pTemplate="header">
+        Registrate
+    </ng-template>
+    <div class="correo">
+    <div class="p-text-left">Correo</div>
+    <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input type="text" pInputText placeholder="Username" [(ngModel)]="usuario.email">         
+    </div>
+    </div>
+    <div class="p-text-left">Contraseña</div>
+    <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-unlock"></i></span>
+        <input type="password" pInputText placeholder="contraseña" [(ngModel)]="usuario.password">         
+    </div>
+    <div class="p-text-left">Confirma Contraseña</div>
+    <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-unlock"></i></span>
+        <input type="password" pInputText placeholder="contraseña" [(ngModel)]="usuario.password">         
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-user-plus"type="button" label="Ingresa" class="p-button-raised p-button-secondary p-button-text"  routerLink="/home/login"></button>
+        <button pButton pRipple  icon="pi pi-sign-in" type="button" label="Registrate" class="p-button-raised"  class="p-shadow-24"  (click)="registrarUsuario()"></button>
+        
+    </ng-template>
+</p-card>

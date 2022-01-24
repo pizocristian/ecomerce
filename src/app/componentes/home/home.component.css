@@ -1,0 +1,13 @@
+.content{
+    display: flex;
+}
+
+app-card{
+ width: 100%;
+ padding-right: 30px;
+ padding-left: 10px
+}
+
+.todo{
+    width: 100%;
+}

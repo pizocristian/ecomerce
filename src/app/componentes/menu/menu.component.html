@@ -1,0 +1,49 @@
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+      <img class="avatar mat-elevation-z8" src="https://www.w3schools.com/howto/img_avatar.png" />
+
+      <h4 class="name">Usuario</h4>
+      <p routerLink="/home/login" class="designation" (click)="session()">{{textSession}}</p>
+
+      <mat-divider></mat-divider>
+      <div *ngFor="let i of items">
+        <button mat-button class="menu-button" [routerLink]="['/home/card', i.nombre]">
+            <mat-icon>{{i.icono}}</mat-icon>
+            <span>{{i.nombre}}</span>
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button" routerLink="/home/cart">
+        <mat-icon [matBadge]="numberBadge" matBadgeColor="warn" >shopping_cart</mat-icon>
+        <span>Carrito</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/home/pedidos">
+        <mat-icon>assignment</mat-icon>
+        <span>Pedidos</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/home/configuracion">
+        <mat-icon>build</mat-icon>
+        <span>Configuración</span>
+      </button>
+
+      <a href="https://api.whatsapp.com/send?phone=+573152047381" target="blank">
+      <button mat-button class="menu-button">
+          <mat-icon>help</mat-icon>
+          <span>Ayuda</span>
+      </button>
+        </a>
+
+  </mat-sidenav>
+  <!-- <mat-sidenav-content>
+      <div class=" mat-elevation-z8">
+         <app-home></app-home>
+      </div>
+  </mat-sidenav-content> -->
+</mat-sidenav-container>

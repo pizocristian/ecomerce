@@ -1,0 +1,44 @@
+/* mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+
+mat-icon{
+    float: right;
+    background: black;
+} */
+header{
+    /* position: fixed; */
+    top:0; left:0; right:0;
+    /* z-index: 1000; */
+    background:#004a9f;
+    /* padding:2rem 1%; */
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    color: white;
+  }
+  header .icons {
+      padding-right: 50px;
+  }
+  
+  header .logo{
+    font-size:30px;
+    color:var(--black);
+    cursor: pointer;
+  }
+  
+  
+  header .icons mat-icon{
+    font-size: 30px;
+    color:var(--black);
+    margin-left:1.5rem;    
+    cursor: pointer;
+  }
+  
+  header .icons mat-icon:hover{
+    color:var(--orange);
+  }
+  

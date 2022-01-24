@@ -1,0 +1,78 @@
+<p-toast></p-toast>
+
+<p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <!-- <h4>Debes iniciar Sesion</h4> -->
+                <p>¿Deseas iniciar sesion?</p>
+            </div>
+            <div class="p-grid p-fluid">
+                <div class="p-col-6">
+                    <button type="button" pButton (click)="onConfirm()" label="Si" class="p-button-success"></button>
+                </div>
+                <div class="p-col-6">
+                    <button type="button" pButton (click)="onReject()" label="Cancelar" class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<div class="card-deck-container">
+    <div class="slide">
+        <div class="slide-inner">
+            <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="" checked="checked">
+            <div class="slide-item">
+                <img [src]="item.colores.azul.foto">
+            </div>
+            <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="" checked="checked">
+            <div class="slide-item">
+                <img [src]="item.colores.verde.foto">
+            </div>
+            <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
+            <div class="slide-item">
+                <img [src]="item.colores.rojo.foto">
+            </div>
+            <label for="slide-3" class="slide-control prev control-1">‹</label>
+            <label for="slide-2" class="slide-control next control-1">›</label>
+            <label for="slide-1" class="slide-control prev control-2">‹</label>
+            <label for="slide-3" class="slide-control next control-2">›</label>
+            <label for="slide-2" class="slide-control prev control-3">‹</label>
+            <label for="slide-1" class="slide-control next control-3">›</label>
+            <ol class="slide-indicador">
+                <li>
+                    <label for="slide-1" class="slide-circulo">•</label>
+                </li>
+                <li>
+                    <label for="slide-2" class="slide-circulo">•</label>
+                </li>
+                <li>
+                    <label for="slide-3" class="slide-circulo">•</label>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="detalle">
+        <div class="titulo">
+            <p>{{item.nombre}}</p>
+        </div>
+        <div class="description">
+            <p>{{item.descripcion}}</p>
+        </div>
+        <p>talla</p>
+        <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" [(ngModel)]="talla">
+            <mat-button-toggle  *ngFor="let i of tallas" [value]="i.talla">{{i.talla}}</mat-button-toggle>
+        </mat-button-toggle-group>
+          <p>color</p>
+          <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" [(ngModel)]="color">
+              <mat-button-toggle *ngFor="let i of colores" [value]="i.color">{{i.color}}</mat-button-toggle>
+            </mat-button-toggle-group>
+        
+        <div class="footer">
+            <p>COP {{item.precio | currency}}</p>
+            <button mat-raised-button color="primary" (click)="sumarCarrito()">Agregar a carrito</button>
+        </div>
+    </div>
+</div>
