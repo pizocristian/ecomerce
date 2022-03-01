@@ -14,28 +14,50 @@ import { AuthGuard } from './services/guards/auth.guard';
 import { PedidoComponent } from './componentes/pedido/pedido.component';
 
 const routes: Routes = [
+  // {
+  //   path:'',
+  //   redirectTo: '/home/card/zapatillas',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'home',
+  //   component: HomeComponent,
+  //   children:[
+  //     {path:'card/:categoria', component:CardComponent},
+  //     {path: 'detalle/:categoria/:id', component:DetalleComponent},
+  //     {path: 'cart', component:CartComponent, canActivate: [AuthGuard]},
+  //     {path: 'login', component:LoginComponent, canActivate: [Noauth]},
+  //     {path: 'registro', component:RegistroComponent, canActivate: [Noauth]},
+  //     {path: 'configuracion', component:ConfiguracionComponent, canActivate: [AuthGuard]},
+  //     {path: 'pedidos', component:PedidosComponent, canActivate: [AuthGuard]},
+  //     {path: 'pedido/:id', component:PedidoComponent, canActivate: [AuthGuard]} 
+    
+  //   ]
+  // },
+  // {
+  //   path: '**',
+  //   component: HomeComponent
+  // }
+
   {
     path:'',
-    redirectTo: '/home/card/zapatillas',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
     path: 'home',
     component: HomeComponent,
     children:[
-      {path:'card/:categoria', component:CardComponent},
-      {path: 'detalle/:categoria/:id', component:DetalleComponent},
-      {path: 'cart', component:CartComponent, canActivate: [AuthGuard]},
-      {path: 'login', component:LoginComponent, canActivate: [Noauth]},
-      {path: 'registro', component:RegistroComponent, canActivate: [Noauth]},
-      {path: 'configuracion', component:ConfiguracionComponent, canActivate: [AuthGuard]},
-      {path: 'pedidos', component:PedidosComponent, canActivate: [AuthGuard]},
-      {path: 'pedido', component:PedidoComponent, canActivate: [AuthGuard]} 
-    
-    ]
-  },
-  {
-    path: 'producto', component:ProductsComponent
+          {path:'card/:categoria', component:CardComponent},
+           {path: 'detalle/:categoria/:id', component:DetalleComponent},
+           {path: 'cart', component:CartComponent, canActivate: [AuthGuard]},
+           {path: 'login', component:LoginComponent, canActivate: [Noauth]},
+           {path: 'registro', component:RegistroComponent, canActivate: [Noauth]},
+           {path: 'configuracion', component:ConfiguracionComponent, canActivate: [AuthGuard]},
+           {path: 'pedidos', component:PedidosComponent, canActivate: [AuthGuard]},
+           {path: 'pedido/:id', component:PedidoComponent, canActivate: [AuthGuard]} 
+        
+         ]
   }
 ];
 

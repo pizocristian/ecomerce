@@ -33,19 +33,34 @@ export class CartComponent implements OnInit {
   countries: any[]=[];
   selectedCity2: any;
   nombre:any;
+  codFactura:any;
 
   constructor(private router: Router,private confirmationService: ConfirmationService, private firestoreService: FirestoreService,private messageService: MessageService) { 
     this.firestoreService.getCarrito().valueChanges().subscribe(res =>{
       let respuesta:any=res;
-      this.transactions=respuesta;
+      
+      if(respuesta.length>0){
+        respuesta.push({nombre:"Domicilio",precio:10000})
+        this.transactions=respuesta;
+      }else{
+        this.transactions=respuesta;
+      }
+      
+      
     })
     this.firestoreService.getUsuario().valueChanges().subscribe(res=>{
+      console.log(res)
       let user:any=res;
       this.direccion=user.direccion;
       this.telefono=user.telefono;
-      this.selectedCity2={cname: user.ciudad, code: user.ciudad};
+      this.selectedCity2={name: user.ciudad, code: user.ciudad};
       this.nombre=user.nombre;
       this.barrio=user.barrio;
+     })
+
+     this.firestoreService.getCodeFactura().valueChanges().subscribe(res=>{
+      let cod:any=res;
+      this.codFactura=cod.length+1;
      })
   }
   /** Gets the total cost of all transactions. */
@@ -78,59 +93,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.countries = [
-      {
-          name: 'Colombia',
-          code: 'CO',
-          states: [
-              {
-                  name: 'Valle del cauca',
-                  cities: [
-                      {cname: 'Cali', code: 'Cali'},
-                      {cname: 'Palmira', code: 'Palmira'},
-                      {cname: 'Jamundi', code: 'Jamundi'}
-                  ]
-              },
-              {
-                  name: 'Quindio',
-                  cities: [
-                      {cname: 'Brisbane', code: 'A-BR'},
-                      {cname: 'Townsville', code: 'A-TO'}
-                  ]
-              },
-              
-          ]
-      },
-      {
-          name: 'United States',
-          code: 'US',
-          states: [
-              {
-                  name: 'California',
-                  cities: [
-                      {cname: 'Los Angeles', code: 'US-LA'},
-                      {cname: 'San Diego', code: 'US-SD'},
-                      {cname: 'San Francisco', code: 'US-SF'}
-                  ]
-              },
-              {
-                  name: 'Florida',
-                  cities: [
-                      {cname: 'Jacksonville', code: 'US-JA'},
-                      {cname: 'Miami', code: 'US-MI'},
-                      {cname: 'Tampa', code: 'US-TA'},
-                      {cname: 'Orlando', code: 'US-OR'}
-                  ]
-              },
-              {
-                  name: 'Texas',
-                  cities: [
-                      {cname: 'Austin', code: 'US-AU'},
-                      {cname: 'Dallas', code: 'US-DA'},
-                      {cname: 'Houston', code: 'US-HO'}
-                  ]
-              }
-          ]
-      }
+      {name: 'New York', code: 'New York'},
+      {name: 'Rome', code: 'Rome'},
+      {name: 'London', code: 'London'},
+      {name: 'Istanbul', code: 'Istanbul'},
+      {name: 'Paris', code: 'Paris'}
   ];
   }
 
@@ -170,17 +137,24 @@ export class CartComponent implements OnInit {
   }
 
   confirma(){
-    console.log(this.getCompra())
       let total=this.getCompra();
+      window.alert(this.generarReferenciaPago())
+      window.alert(this.codFactura)
+      let pedido ={telefono:this.telefono,id_pedido:'CE'+this.codFactura,precioTotal:total/100,foto:this.transactions[0].foto, estado:'En revisión', ciudad:this.selectedCity2.name, barrio:this.barrio, direccion:this.direccion, productos:this.transactions }
       
-      let pedido ={telefono:this.telefono,id_pedido:'CE2',precioTotal:total/100,foto:this.transactions[0].foto, estado:'En revisión', ciudad:this.selectedCity2.cname, barrio:this.barrio, direccion:this.direccion, productos:this.transactions }
-      console.log(pedido)
        this.firestoreService.postPedido(pedido).then(res=>{
-         this.firestoreService.deleteCart().then(res=>{          
-            window.location.href='https://checkout.wompi.co/p/?public-key=pub_prod_OAFUo9PEVdvjkHSPGPyNaBTk9zrcysQi&currency=COP&amount-in-cents='+total+'&reference='+this.generarReferenciaPago()+'&redirect-url=http%3A%2F%2Flocalhost%3A4200%2Fhome%2Fcart'
+        this.firestoreService.postCodeFactura('CE'+this.codFactura).then(res=>{   
+          this.firestoreService.deleteCart().then(res=>{          
+            window.location.href='https://checkout.wompi.co/p/?public-key=pub_prod_OAFUo9PEVdvjkHSPGPyNaBTk9zrcysQi&currency=COP&amount-in-cents='+total+'&reference='+this.generarReferenciaPago()+'&redirect-url=http%3A%2F%2Flocalhost%3A4200%2Fhome%2Fpedidos'
          }).catch(res=>{
            console.log(res)
-         })
+         })     
+         
+       }).catch(res=>{
+         console.log(res)
+       })
+         
+
        }).catch(res=>{
          console.log(res)
        })
@@ -192,7 +166,7 @@ export class CartComponent implements OnInit {
   }
 
   generarReferenciaPago(){
-    let cod='778912391'
+    let cod='7789123'+this.codFactura+( Math.floor(Math.random()*99999))
     return cod;
   }
 

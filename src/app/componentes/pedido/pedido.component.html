@@ -1,32 +1,73 @@
 <div class="todo">
     <button routerLink="/home/pedidos" pButton pRipple type="button" label="Volver" class="p-button-outlined p-button-rounded" icon="pi pi-angle-left"></button>
-<div class="cards">
+    
+    <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+      <div class="grid">
+          <div class="col-12 md:col-6 lg:col-3">
+              <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                      <div>
+                          <span class="block text-500 font-medium mb-3">Estado</span>
+                          <div class="text-900 font-medium text-xl">{{pedido.estado}}</div>
+                      </div>
+                      <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                          <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                      </div>
+                  </div>
+                  <!-- <span class="text-green-500 font-medium">Estado</span> -->
+                  <span class="text-500">Estado del producto</span>
+              </div>
+          </div>
 
-<div class="card">
-    <div class="container">
-      <h4><b>Estado del pedido</b></h4>
-      <p>{{pedido.estado}}</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="container">
-      <h4><b> Datos del pedido</b></h4>
-      <p>Dirección: {{pedido.direccion}}</p>
-    <p>Barrio: {{pedido.barrio}}</p>
-    <p>Ciudad: {{pedido.ciudad}}</p>  
-    <p>Telefono: {{pedido.telefono}}</p> 
-    </div>
-  </div>
-  <div class="card">
-    <div class="container">
-      <h4><b>Total del pedido</b></h4>
-      <p>COP {{pedido.precioTotal| currency}}</p>
-    </div>
-  </div>
+          <div class="col-12 md:col-6 lg:col-3">
+              <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                      <div>
+                          <span class="block text-500 font-medium mb-3">Dirección</span>
+                          <div class="text-900 font-medium text-xl">{{pedido.ciudad}}</div>
+                          <div class="text-900 font-medium text-xl">{{pedido.direccion}}</div>
+                      </div>
+                      <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                          <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-</div>
+          <div class="col-12 md:col-6 lg:col-3">
+              <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                      <div>
+                          <span class="block text-500 font-medium mb-3">Telefono</span>
+                          <div class="text-900 font-medium text-xl">{{pedido.telefono}}</div>
+                      </div>
+                      <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                          <i class="pi pi-mobile text-cyan-500 text-xl"></i>
+                      </div>
+                  </div>
+                  <span class="text-500">último número registrado</span>
+              </div>
+          </div>
 
-<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+          <div class="col-12 md:col-6 lg:col-3">
+              <div class="surface-card shadow-2 p-3 border-round">
+                  <div class="flex justify-content-between mb-3">
+                      <div>
+                          <span class="block text-500 font-medium mb-3">Total del pedido</span>
+                          <div class="text-900 font-medium text-xl">COP {{pedido.precioTotal| currency}}</div>
+                      </div>
+                      <div class="flex align-items-center justify-content-center bg-green-100 border-round" style="width:2.5rem;height:2.5rem">
+                          <i class="pi pi-dollar text-green-500 text-xl"></i>
+                      </div>
+                  </div>
+                  <span class="text-500">Total de este pedido comprado</span>
+              </div>
+          </div>
+      </div>
+  </div>
+    
+
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8 w-11 m-auto">
     <!-- Item Column -->
     <ng-container matColumnDef="foto">
       <th mat-header-cell *matHeaderCellDef> Imagen </th>

@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     password:''
   };
 
+  password:any;
+
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -28,16 +30,34 @@ export class LoginComponent implements OnInit {
     this.authService.onLogin(this.usuario).then(res => {
       this.router.navigateByUrl('/');    
     }).catch(err=>{
-     console.log(err)
+      if(err.code=='auth/user-not-found'){
+        window.alert('no se encontro el correo')
+      }if(err.code=='auth/invalid-email'){
+        window.alert('correo invalido')
+      }if(err.code=='auth/wrong-password'){
+      window.alert('contraseña incorrecta')   
+      }
+      console.log(err.code)
     })
   }
 
   registrarUsuario(){   
+    if(this.password == this.registroUsuario.password){
     this.authService.onRegister(this.registroUsuario).then(res => {
      console.log(res)
      location.reload();
     }).catch(err=>{
-     console.log(err)
+      if(err.code=='auth/weak-password'){
+        window.alert('La contraseña debe tener minimo 6 caracteres')
+      }if(err.code=='auth/invalid-email'){
+        window.alert('Correo invalido')
+      }if(err.code=='auth/email-already-in-use'){
+      window.alert('El correo esta siendo usado por otra cuenta')   
+      }
+      console.log(err)
     })
+  }else{
+    window.alert('Las contraseñas no considen')
   }
+}
 }

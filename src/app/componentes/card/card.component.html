@@ -1,15 +1,21 @@
-<div class="card-deck-container">
-<div *ngFor="let i of items" class="card card-item">
-    <img [src]="i.foto" alt="Avatar">
-    <div class="container">
-      <h4><b>{{i.nombre}}</b></h4>
-      <div>
-      <p styl>COP {{i.precio | currency}}</p>
-      <button mat-raised-button color="primary" [routerLink]="['/home/detalle', categoria,i.id]">Ver mas</button>
+<div class="card-deck-container">    
+  <div *ngFor="let i of items" class="card ">
+    <img [src]="i.foto" alt="Avatar">      
+    <div class="card-container blue-container overflow-hidden">
+      <div class="flex">
+        <div class="font-bold  px-5 py-3">{{i.nombre}}</div>
+      </div>
+      <div class="flex">
+        <div class="font-bold  px-5 py-3">COP {{i.precio | currency}}</div>
+        <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:8.5rem;height:2.5rem">
+          <button  pButton pRipple type="button" label="Ver mas" class="p-button-text text-blue-500" icon="pi pi-eye" [routerLink]="['/home/detalle', categoria,i.id]"></button>
+        </div>
       </div>
     </div>
   </div>
-  <p-paginator [rows]="10" [totalRecords]="10" ></p-paginator>
+  <div class="w-12" >
+    <p-paginator [rows]="10" [totalRecords]="10" ></p-paginator>
+  </div>
 </div>
 
 

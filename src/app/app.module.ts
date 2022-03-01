@@ -51,6 +51,8 @@ import {PaginatorModule} from 'primeng/paginator';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
+import {GalleriaModule} from 'primeng/galleria';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -106,10 +108,11 @@ import {DialogModule} from 'primeng/dialog';
     PaginatorModule,
     ConfirmDialogModule,
     DialogModule,
-    
+    GalleriaModule,
   ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

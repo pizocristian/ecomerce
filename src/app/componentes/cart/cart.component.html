@@ -1,20 +1,16 @@
 <p-toast position="top-center" key="bc"></p-toast>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 
-<p-dialog header="Confirmar datos de envio" [(visible)]="displayResponsive" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
+<p-dialog header="Confirmar datos de envio" [(visible)]="displayResponsive" [style]="{width: '400px'}"
+    [draggable]="false" [resizable]="false" >
     <h5>Pais - Ciudad</h5>
-<p-cascadeSelect [(ngModel)]="selectedCity2" [options]="countries" optionLabel="cname" optionGroupLabel="name" 
-    [optionGroupChildren]="['states', 'cities']" [style]="{'minWidth': '14rem'}" placeholder="Selecionar Ciudad">
-    <ng-template pTemplate="option" let-option>
-        <div class="country-item">
-            <img *ngIf="option.states" src="../../../assets/showcase/images/demo/flag/flag_placeholder.png" class="flag flag-AU"/>
-            <i class="pi pi-compass p-mr-2" *ngIf="option.cities"></i>
-            <i class="pi pi-map-marker p-mr-2" *ngIf="option.cname"></i>
-            <span>{{option.cname || option.name}}</span>
-        </div>
-    </ng-template>
-</p-cascadeSelect>
+
+    <p-dropdown [options]="countries" [(ngModel)]="selectedCity2" [placeholder]="selectedCity2.name" [style]="{width: '15vw'}" 
+    [filter]="true" filterBy="name"  optionLabel="name" ></p-dropdown>
+
+
+
+
 
 <h5>Barrio</h5>
 <input type="text" pInputText  [(ngModel)]="barrio" />
@@ -33,7 +29,7 @@
         </ng-template>
 </p-dialog>
 
-<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8 pr-8">
     <!-- Item Column -->
     <ng-container matColumnDef="foto">
       <th mat-header-cell *matHeaderCellDef> Imagen </th>

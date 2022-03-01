@@ -1,30 +1,51 @@
 <p-toast></p-toast>
-<div class="card-deck-container">
-    <h5>Tu nombre</h5>
-    <input type="text" pInputText  [(ngModel)]="nombre"/>
+<div class="card m-4 shadow-6">
+    <div class="flex m-4">
+        <div class="w-6 mr-4">
+            <div class="mb-4">
+                <div class="text-900 font-medium text-xl mb-2">Tu nombre</div>
+                <input type="text" class="w-full border-500 " pInputText  [(ngModel)]="nombre"/>
+            </div>
 
-    <h5>Pais - Ciudad</h5>
-<p-cascadeSelect [(ngModel)]="ciudad" [options]="countries" optionLabel="cname" optionGroupLabel="name" 
-    [optionGroupChildren]="['states', 'cities']" [style]="{'minWidth': '14rem'}" placeholder="Selecionar Ciudad">
-    <ng-template pTemplate="option" let-option>
-        <div class="country-item">
-            <img *ngIf="option.states" src="../../../assets/showcase/images/demo/flag/flag_placeholder.png" class="flag flag-AU"/>
-            <i class="pi pi-compass p-mr-2" *ngIf="option.cities"></i>
-            <i class="pi pi-map-marker p-mr-2" *ngIf="option.cname"></i>
-            <span>{{option.cname || option.name}}</span>
+            <div class="mb-4">
+                <div class="text-900 font-medium text-xl mb-2">Pais - Ciudad</div>
+                <!-- <p-cascadeSelect class="block" [(ngModel)]="ciudad" [options]="countries" optionLabel="cname" optionGroupLabel="name" 
+                    [optionGroupChildren]="['states', 'cities']" [style]="{'minWidth': '14rem'}" placeholder="Selecionar Ciudad">
+                    <ng-template pTemplate="option" let-option>
+                        <div class="country-item">
+                            <img *ngIf="option.states" src="../../../assets/showcase/images/demo/flag/flag_placeholder.png" class="flag flag-AU"/>
+                            <i class="pi pi-compass p-mr-2" *ngIf="option.cities"></i>
+                            <i class="pi pi-map-marker p-mr-2" *ngIf="option.cname"></i>
+                            <span>{{option.cname || option.name}}</span>
+                        </div>
+                    </ng-template>
+                </p-cascadeSelect> -->
+                <p-dropdown [options]="countries" [(ngModel)]="ciudad" [placeholder]="ciudad.name" [style]="{width: '100%'}" 
+                    [filter]="true" filterBy="name"  optionLabel="name" ></p-dropdown>
+            </div>
+
+            <div class="">
+                <div class="text-900 font-medium text-xl mb-2">Barrio</div>
+                <input type="text" class="w-full border-500 " pInputText [(ngModel)]="barrio"/>
+            </div>
         </div>
-    </ng-template>
-</p-cascadeSelect>
 
-<h5>Barrio</h5>
-<input type="text" pInputText [(ngModel)]="barrio"/>
+        <div class="w-6">
+            <div class="mb-4">
+                <div class="text-900 font-medium text-xl mb-2">Direccion</div>
+                <input class="block" class="w-full border-500 " type="text" pInputText [(ngModel)]="direccion"/>
+            </div>
 
-<h5>Direccion</h5>
-<input type="text" pInputText [(ngModel)]="direccion"/>
-
-<h5>Telefono</h5>
-<input type="text" pInputText [(ngModel)]="telefono"/>
-
-
-<p-button label="Guardar cambios" (click)="postDataPerson()"></p-button>
+            <div class="mb-6">
+                <div class="text-900 font-medium text-xl mb-2">Telefono</div>
+                <input class="block" class="w-full border-500 "  type="text" pInputText [(ngModel)]="telefono"/>
+            </div>
+            
+            <!-- <p-button class="block" label="Guardar cambios" (click)="postDataPerson()"></p-button> -->
+        </div>
+    </div>
+    <div class="m-4">
+        <hr class="mb-3 mx-0 border-top-1 border-500 surface-border" />
+        <p-button  class="block" label="Guardar cambios" (click)="postDataPerson()"></p-button>
+    </div>
 </div>

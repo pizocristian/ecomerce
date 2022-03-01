@@ -26,92 +26,24 @@ export class ConfiguracionComponent implements OnInit {
         let user:any=res;
         this.direccion=user.direccion;
         this.telefono=user.telefono;
-        this.ciudad={cname: user.ciudad, code: user.ciudad};
+        this.ciudad={name: user.ciudad, code: user.ciudad};
         this.nombre=user.nombre;
         this.barrio=user.barrio;
        })
     
-    this.countries = [
-      {
-          name: 'Colombia',
-          code: 'CO',
-          states: [
-              {
-                  name: 'Valle del cauca',
-                  cities: [
-                      {cname: 'Cali', code: 'Cali'},
-                      {cname: 'Palmira', code: 'Palmira'},
-                      {cname: 'Jamundi', code: 'Jamundi'}
-                  ]
-              },
-              {
-                  name: 'Quindio',
-                  cities: [
-                      {cname: 'Brisbane', code: 'A-BR'},
-                      {cname: 'Townsville', code: 'A-TO'}
-                  ]
-              },
-              
-          ]
-      },
-      {
-          name: 'Mexico', 
-          code: 'ME',
-          states: [
-              {
-                  name: 'Quebec',
-                  cities: [
-                      {cname: 'Montreal', code: 'C-MO'},
-                      {cname: 'Quebec City', code: 'C-QU'}
-                  ]
-              },
-              {
-                  name: 'Ontario',
-                  cities: [
-                      {cname: 'Ottawa', code: 'C-OT'},
-                      {cname: 'Toronto', code: 'C-TO'}
-                  ]
-              },
-              
-          ]
-      },
-      {
-          name: 'United States',
-          code: 'US',
-          states: [
-              {
-                  name: 'California',
-                  cities: [
-                      {cname: 'Los Angeles', code: 'US-LA'},
-                      {cname: 'San Diego', code: 'US-SD'},
-                      {cname: 'San Francisco', code: 'US-SF'}
-                  ]
-              },
-              {
-                  name: 'Florida',
-                  cities: [
-                      {cname: 'Jacksonville', code: 'US-JA'},
-                      {cname: 'Miami', code: 'US-MI'},
-                      {cname: 'Tampa', code: 'US-TA'},
-                      {cname: 'Orlando', code: 'US-OR'}
-                  ]
-              },
-              {
-                  name: 'Texas',
-                  cities: [
-                      {cname: 'Austin', code: 'US-AU'},
-                      {cname: 'Dallas', code: 'US-DA'},
-                      {cname: 'Houston', code: 'US-HO'}
-                  ]
-              }
-          ]
-      }
-  ];
+       this.countries = [
+        {name: 'New York', code: 'New York'},
+        {name: 'Rome', code: 'Rome'},
+        {name: 'London', code: 'London'},
+        {name: 'Istanbul', code: 'Istanbul'},
+        {name: 'Paris', code: 'Paris'}
+    ];
+    
   }
 
   postDataPerson(){
 
-    let persona={barrio:this.barrio,direccion:this.direccion, telefono:this.telefono,ciudad:this.ciudad.cname,nombre:this.nombre}
+    let persona={barrio:this.barrio,direccion:this.direccion, telefono:this.telefono,ciudad:this.ciudad.name,nombre:this.nombre}
     console.log(persona)
     this.firestoreService.postUsuario(persona).then(res=>{
         this.messageService.add({severity:'success', summary:'Datos guardados', detail:'Datos Guardados con exito'});

@@ -1,7 +1,7 @@
-<div class="hola">
-<p-orderList [value]="products" [listStyle]="{'max-height':'30rem'}" header="Lista de Pedidos" >
+<div class="card-deck-container">
+<p-orderList [value]="products" [listStyle]="{'max-height':'30rem'}" header="Lista de Pedidos" class="w-full" >
     <ng-template let-product pTemplate="item">
-        <div class="product-item" routerLink="/home/pedido">
+        <div class="product-item" routerLink="/home/pedido" [routerLink]="['/home/pedido', product.id_pedido]">
             <div class="image-container">
                     <img [src]="product.foto" [alt]="product.name" class="product-image" />
             </div>
@@ -12,7 +12,10 @@
             </div>
             <div class="product-list-action">
                 <h6 class="p-mb-2">Estado</h6>
-                <span>{{product.estado}}</span>
+                <div class="bg-yellow-100" >
+                    <p class=" text-yellow-500 ">{{product.estado}}</p>
+                </div>
+                <!-- <span>{{product.estado}}</span> -->
             </div>
         </div>
     </ng-template>

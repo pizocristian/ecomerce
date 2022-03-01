@@ -21,6 +21,8 @@ export class DetalleComponent implements OnInit {
 
   slides = [{'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F3.jpg?alt=media&token=91471986-5d60-4b39-9881-4c8ac78f7fca"}, {'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F1.jpg?alt=media&token=41500227-3aa8-4cb2-9ddc-049e95f5b5f0"},{'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F2.jpg?alt=media&token=3dc67f24-9930-42e7-bbc6-b3b6238edb30"}];
 
+  images: any[]= [{},{},{},{}];
+
 
   constructor(private router: Router,private firestoreService: FirestoreService,  activatedRoute:ActivatedRoute,private messageService: MessageService, private authService: AuthService) { 
     this.categoria = activatedRoute.snapshot.paramMap.get('categoria');
@@ -33,6 +35,11 @@ export class DetalleComponent implements OnInit {
      }) 
      this.firestoreService.getTallas(this.categoria,this.id).valueChanges().subscribe(res=>{
       this.tallas=res;
+     }) 
+     this.firestoreService.getFotos(this.categoria,this.id).valueChanges().subscribe(res=>{
+      
+      let fotos=res
+      this.images=fotos;
      }) 
      
   }
@@ -55,10 +62,8 @@ clear() {
 
 
 
-  sumarCarrito(){    
-
+  sumarCarrito(){   
     this.authService.Session.subscribe(session=>{
-      //Si la session es tru inicia en la primera pagina del tabs
       if(session){
         if(this.validar()){
           let idCart= Number(localStorage.getItem('numberCart'))
@@ -82,7 +87,7 @@ clear() {
     if(this.talla && this.color ){
       return true;
     }else{
-      window.alert('Escoger color y talla')
+      this.messageService.add({key: 'tc', severity:'warn', summary: 'Por favor', detail: 'Agregar color y talla'});
       return false;
     }
   }

@@ -8,7 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 })
 export class PedidosComponent implements OnInit {
 
-  products: any=[1,2,3,4,5,6,7,8,9,20,22,12];
+  products: any=[];
 
     constructor(private firestoreService: FirestoreService) { }
 

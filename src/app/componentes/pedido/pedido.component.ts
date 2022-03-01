@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 interface Transaction {
@@ -22,16 +23,17 @@ export class PedidoComponent implements OnInit {
   transactions: Transaction[] = [];
   direcion:any = "/home/cart"
   pedido:any;
+  id:any;
 
 
 
-  constructor(private firestoreService: FirestoreService) { 
-    
+  constructor(private firestoreService: FirestoreService, activatedRoute:ActivatedRoute) { 
+    this.id = activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
 
-     this.firestoreService.getPedido('CE2').valueChanges().subscribe(res =>{
+     this.firestoreService.getPedido(this.id).valueChanges().subscribe(res =>{
       this.pedido =res;
       console.log(res)
       this.transactions=this.pedido.productos

@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-
+<p-toast position="bottom-center" key="tc"></p-toast>
 <p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
         <div class="p-flex p-flex-column" style="flex: 1">
@@ -21,58 +21,81 @@
 </p-toast>
 
 <div class="card-deck-container">
-    <div class="slide">
-        <div class="slide-inner">
-            <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="" checked="checked">
-            <div class="slide-item">
-                <img [src]="item.colores.azul.foto">
-            </div>
-            <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="" checked="checked">
-            <div class="slide-item">
-                <img [src]="item.colores.verde.foto">
-            </div>
-            <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden="" checked="checked">
-            <div class="slide-item">
-                <img [src]="item.colores.rojo.foto">
-            </div>
-            <label for="slide-3" class="slide-control prev control-1">‹</label>
-            <label for="slide-2" class="slide-control next control-1">›</label>
-            <label for="slide-1" class="slide-control prev control-2">‹</label>
-            <label for="slide-3" class="slide-control next control-2">›</label>
-            <label for="slide-2" class="slide-control prev control-3">‹</label>
-            <label for="slide-1" class="slide-control next control-3">›</label>
-            <ol class="slide-indicador">
-                <li>
-                    <label for="slide-1" class="slide-circulo">•</label>
-                </li>
-                <li>
-                    <label for="slide-2" class="slide-circulo">•</label>
-                </li>
-                <li>
-                    <label for="slide-3" class="slide-circulo">•</label>
-                </li>
-            </ol>
+    <div class="w-6 r">
+        
+        
+        <!-- <p-galleria [value]="images">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.foto" [alt]="item.alt" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center ">
+                    <img [src]="item.foto" class="lg:col-8  "/>
+                </div>
+            </ng-template>
+        </p-galleria> -->
+
+        <div class="wrapper">
+            <input type="radio" name="image-slide" checked="checked">
+            <picture aria-label="Random Picture 1">
+                <img src="https://picsum.photos/500/300?random=1" style="width: 100%;" alt="Random Picture 1">
+            </picture>
+            
+            <input type="radio" name="image-slide">
+            <picture aria-label="Random Picture 2">
+                <img src="https://picsum.photos/500/300?random=2" alt="">
+            </picture>
+        
+            <input type="radio" name="image-slide">
+            <picture aria-label="Link image">
+                <a href="https://picsum.photos/500/300?random=3" target="_blank">
+                    <img src="https://picsum.photos/500/300?random=3" alt="">
+                </a>
+            </picture>
+            
+            <input type="radio" name="image-slide">
+            <picture>
+                <img src="https://picsum.photos/500/300?random=4" alt="">
+            </picture>
+            
+            <input type="radio" name="image-slide">
+            <section>
+                <h2>
+                    This is not an image!
+                </h2>
+                <p>You could also just use a container with some text in it</p>
+                <button>Call to action, bitch!</button>
+            </section>
         </div>
+    
     </div>
-    <div class="detalle">
-        <div class="titulo">
-            <p>{{item.nombre}}</p>
+    <div class="detalle w-5">
+        <div class="flex">
+            <div class="font-bold text-5xl px-5 py-3">{{item.nombre}}</div>
+          </div>
+          <div class="flex">
+            <div class="font-bold  px-5 py-3">{{item.descripcion}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi asperiores ea nesciunt, laborum optio nobis ratione minus voluptas voluptatem! Quod nostrum enim temporibus totam. Laudantium perferendis unde maxime harum. Cumque! </div>
+          </div>
+          <div class="flex">
+              <div class="font-bold  px-5 py-1">
+            <p>Talla</p>
+            <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" [(ngModel)]="talla">
+                <mat-button-toggle  *ngFor="let i of tallas" [value]="i.talla">{{i.talla}}</mat-button-toggle>
+            </mat-button-toggle-group>
         </div>
-        <div class="description">
-            <p>{{item.descripcion}}</p>
-        </div>
-        <p>talla</p>
-        <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" [(ngModel)]="talla">
-            <mat-button-toggle  *ngFor="let i of tallas" [value]="i.talla">{{i.talla}}</mat-button-toggle>
-        </mat-button-toggle-group>
-          <p>color</p>
+          </div>
+          <div class="flex">
+            <div class="font-bold  px-5 py-2">
+                <p>Color</p>
           <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" [(ngModel)]="color">
               <mat-button-toggle *ngFor="let i of colores" [value]="i.color">{{i.color}}</mat-button-toggle>
             </mat-button-toggle-group>
+            </div>
+          </div>
+          <div class="flex py-3">
+            <div class="font-bold text-2xl pr-2 pl-5  mt-auto mb-auto">COP {{item.precio | currency}} </div>
+            <div class="font-bold "><p-button label="Agregar al carrito" icon="pi pi-shopping-cart" (click)="sumarCarrito()"></p-button> </div>
+          </div>
         
-        <div class="footer">
-            <p>COP {{item.precio | currency}}</p>
-            <button mat-raised-button color="primary" (click)="sumarCarrito()">Agregar a carrito</button>
-        </div>
     </div>
 </div>
