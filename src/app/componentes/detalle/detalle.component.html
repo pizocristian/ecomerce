@@ -20,7 +20,9 @@
     </ng-template>
 </p-toast>
 
+
 <div class="card-deck-container">
+
     <div class="w-6 r">
         
         
@@ -36,12 +38,15 @@
         </p-galleria> -->
 
         <div class="wrapper">
+            <div *ngFor="let item of images"> 
+                l
+            </div>
             <input type="radio" name="image-slide" checked="checked">
             <picture aria-label="Random Picture 1">
                 <img src="https://picsum.photos/500/300?random=1" style="width: 100%;" alt="Random Picture 1">
             </picture>
             
-            <input type="radio" name="image-slide">
+            <!-- <input type="radio" name="image-slide">
             <picture aria-label="Random Picture 2">
                 <img src="https://picsum.photos/500/300?random=2" alt="">
             </picture>
@@ -56,7 +61,7 @@
             <input type="radio" name="image-slide">
             <picture>
                 <img src="https://picsum.photos/500/300?random=4" alt="">
-            </picture>
+            </picture> -->
             
             <input type="radio" name="image-slide">
             <section>
