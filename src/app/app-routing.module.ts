@@ -41,7 +41,7 @@ const routes: Routes = [
 
   {
     path:'',
-    redirectTo: '/home',
+    redirectTo: '/home/card/zapatillas',
     pathMatch: 'full'
   },
   {

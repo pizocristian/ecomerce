@@ -22,8 +22,8 @@
 
 
 <div class="card-deck-container">
-
-    <div class="w-6 r">
+<div class="grid">
+    <div class="lg:col-5 sm:col-12 col-12 ">
         
         
         <!-- <p-galleria [value]="images">
@@ -37,16 +37,18 @@
             </ng-template>
         </p-galleria> -->
 
-        <div class="wrapper">
-            <div *ngFor="let item of images"> 
-                l
-            </div>
-            <input type="radio" name="image-slide" checked="checked">
-            <picture aria-label="Random Picture 1">
-                <img src="https://picsum.photos/500/300?random=1" style="width: 100%;" alt="Random Picture 1">
-            </picture>
+        <div class="wrapper" >
+            <div *ngFor="let item of images">
+                <input type="radio" name="image-slide" checked="checked" >
+           
+                <img [src]="item.foto" style="width: 100%; object-fit: contain;">
             
-            <!-- <input type="radio" name="image-slide">
+            
+            </div>
+                
+           
+            
+            <!-- <input type="radio" name="image-slide"> *ngFor="let item of images"
             <picture aria-label="Random Picture 2">
                 <img src="https://picsum.photos/500/300?random=2" alt="">
             </picture>
@@ -63,18 +65,11 @@
                 <img src="https://picsum.photos/500/300?random=4" alt="">
             </picture> -->
             
-            <input type="radio" name="image-slide">
-            <section>
-                <h2>
-                    This is not an image!
-                </h2>
-                <p>You could also just use a container with some text in it</p>
-                <button>Call to action, bitch!</button>
-            </section>
+            
         </div>
     
     </div>
-    <div class="detalle w-5">
+    <div class="detalle lg:col-5 sm:col-12">
         <div class="flex">
             <div class="font-bold text-5xl px-5 py-3">{{item.nombre}}</div>
           </div>
@@ -103,4 +98,5 @@
           </div>
         
     </div>
+</div>
 </div>

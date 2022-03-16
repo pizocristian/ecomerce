@@ -23,20 +23,28 @@ export class ConfiguracionComponent implements OnInit {
   ngOnInit(): void {
 
     this.firestoreService.getUsuario().valueChanges().subscribe(res=>{
+      if(res){
         let user:any=res;
         this.direccion=user.direccion;
         this.telefono=user.telefono;
         this.ciudad={name: user.ciudad, code: user.ciudad};
         this.nombre=user.nombre;
         this.barrio=user.barrio;
+      }else{
+        this.direccion='';
+        this.telefono='';
+        this.ciudad='';
+        this.nombre='';
+        this.barrio='';
+      }
        })
     
        this.countries = [
-        {name: 'New York', code: 'New York'},
-        {name: 'Rome', code: 'Rome'},
-        {name: 'London', code: 'London'},
-        {name: 'Istanbul', code: 'Istanbul'},
-        {name: 'Paris', code: 'Paris'}
+        {name: 'Cali', code: 'Cali'},
+        {name: 'Palmira', code: 'Palmira'},
+        {name: 'Jamundi', code: 'Jamundi'},
+        {name: 'Candelaria', code: 'Candelaria'},
+        {name: 'Buga', code: 'Buga'}
     ];
     
   }

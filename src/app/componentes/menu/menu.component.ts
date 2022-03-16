@@ -32,6 +32,7 @@ export class MenuComponent{
         this.textSession="Cerrar session"
         this.firestoreService.getCarrito().valueChanges().subscribe(res =>{
           this.numberBadge=res.length;
+          localStorage.setItem('numberCart', this.numberBadge)
         })
       }
         //Si la sessión no esta iniciada inicia la app en el login

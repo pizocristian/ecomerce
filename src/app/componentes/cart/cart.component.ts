@@ -49,13 +49,21 @@ export class CartComponent implements OnInit {
       
     })
     this.firestoreService.getUsuario().valueChanges().subscribe(res=>{
-      console.log(res)
-      let user:any=res;
-      this.direccion=user.direccion;
-      this.telefono=user.telefono;
-      this.selectedCity2={name: user.ciudad, code: user.ciudad};
-      this.nombre=user.nombre;
-      this.barrio=user.barrio;
+      if(res){
+        let user:any=res;
+        this.direccion=user.direccion;
+        this.telefono=user.telefono;
+        this.selectedCity2={name: user.ciudad, code: user.ciudad};
+        this.nombre=user.nombre;
+        this.barrio=user.barrio;
+      }else{
+        this.direccion='';
+        this.telefono='';
+        this.selectedCity2='';
+        this.nombre='';
+        this.barrio='';
+      }
+     
      })
 
      this.firestoreService.getCodeFactura().valueChanges().subscribe(res=>{
@@ -93,11 +101,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.countries = [
-      {name: 'New York', code: 'New York'},
-      {name: 'Rome', code: 'Rome'},
-      {name: 'London', code: 'London'},
-      {name: 'Istanbul', code: 'Istanbul'},
-      {name: 'Paris', code: 'Paris'}
+      {name: 'Cali', code: 'Cali'},
+      {name: 'Palmira', code: 'Palmira'},
+      {name: 'Jamundi', code: 'Jamundi'},
+      {name: 'Candelaria', code: 'Candelaria'},
+      {name: 'Buga', code: 'Buga'}
   ];
   }
 
@@ -138,8 +146,6 @@ export class CartComponent implements OnInit {
 
   confirma(){
       let total=this.getCompra();
-      window.alert(this.generarReferenciaPago())
-      window.alert(this.codFactura)
       let pedido ={telefono:this.telefono,id_pedido:'CE'+this.codFactura,precioTotal:total/100,foto:this.transactions[0].foto, estado:'En revisión', ciudad:this.selectedCity2.name, barrio:this.barrio, direccion:this.direccion, productos:this.transactions }
       
        this.firestoreService.postPedido(pedido).then(res=>{

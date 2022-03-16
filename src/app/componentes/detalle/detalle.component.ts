@@ -21,7 +21,7 @@ export class DetalleComponent implements OnInit {
 
   slides = [{'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F3.jpg?alt=media&token=91471986-5d60-4b39-9881-4c8ac78f7fca"}, {'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F1.jpg?alt=media&token=41500227-3aa8-4cb2-9ddc-049e95f5b5f0"},{'image': "https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ce1%2Fzapatillas%2F2.jpg?alt=media&token=3dc67f24-9930-42e7-bbc6-b3b6238edb30"}];
 
-  images: any[]= [{},{},{},{}];
+  images:any=[];;
 
 
   constructor(private router: Router,private firestoreService: FirestoreService,  activatedRoute:ActivatedRoute,private messageService: MessageService, private authService: AuthService) { 
@@ -37,7 +37,7 @@ export class DetalleComponent implements OnInit {
       this.tallas=res;
      }) 
      this.firestoreService.getFotos(this.categoria,this.id).valueChanges().subscribe(res=>{
-      
+      console.log(res)
       let fotos=res
       this.images=fotos;
      }) 
@@ -75,7 +75,7 @@ clear() {
             })
         }
       }else{//Si la sessión no esta iniciada
-          this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
+        this.router.navigateByUrl('home/login'); 
         }
     });
     
