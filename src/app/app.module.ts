@@ -53,6 +53,7 @@ import {ConfirmationService} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import {GalleriaModule} from 'primeng/galleria';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { firestore } from 'firebase';
 
 @NgModule({
   declarations: [
@@ -87,8 +88,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatTableModule,
     MatMenuModule,
     FormsModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,    
     AngularFireDatabaseModule,
     MatCarouselModule.forRoot(),
     MdbCheckboxModule,
@@ -109,6 +109,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ConfirmDialogModule,
     DialogModule,
     GalleriaModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     ConfirmationService,
