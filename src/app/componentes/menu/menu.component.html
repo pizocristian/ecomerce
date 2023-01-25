@@ -7,22 +7,29 @@
           close
       </mat-icon>
   </button>
-  Shop Store
+  <span>Codigo y Bugs</span>
+  <button mat-button class="menu-button">
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/home/cart">
+    <mat-icon [matBadge]="numberBadge" matBadgeColor="warn">shopping_cart</mat-icon>
+  </button>
 </mat-toolbar>
+
+
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-      <img class="avatar mat-elevation-z8" src="https://www.w3schools.com/howto/img_avatar.png" />
+      <img class="avatar mat-elevation-z8" src="https://firebasestorage.googleapis.com/v0/b/ecommerce-ab9a4.appspot.com/o/ecommerce%2Fce1%2Flogo%2FICONO%20CB%202.png?alt=media&token=a03f0d4b-57ce-445f-9aa4-18299305e2f6" />
 
-      <h4 class="name">Usuario</h4>
+      <h4 class="name">Codigo y bugs</h4>
       <p routerLink="/home/login" class="designation" (click)="session()">{{textSession}}</p>
 
       <mat-divider></mat-divider>
       <div *ngFor="let i of items">
         <button mat-button class="menu-button" [routerLink]="['/home/card', i.nombre]">
             <mat-icon>{{i.icono}}</mat-icon>
-            <span>{{i.nombre}}</span>
+            <span class="ml-2">{{i.nombre}}</span>
         </button>
       </div>
 
@@ -43,17 +50,17 @@
         <span>Configuración</span>
       </button>
 
-      <a href="https://api.whatsapp.com/send?phone=+573152047381" target="blank">
+      <a href="https://api.whatsapp.com/send?phone=573152047381&text=Hola,%20requiero%20ayuda%20con" target="blank">
       <button mat-button class="menu-button">
           <mat-icon>help</mat-icon>
-          <span>Ayuda</span>
+          <span>Soporte</span>
       </button>
         </a>
 
   </mat-sidenav>
   <mat-sidenav-content>
-      <div class="ml-5 mr-2 mat-elevation-z8">
+      
         <router-outlet></router-outlet>
-      </div>
+     
   </mat-sidenav-content>
 </mat-sidenav-container>
